@@ -35,7 +35,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUBTOKEN }}
         with:
           tag_name: ${{ steps.get_version.outputs.version }}
-          release_name: FelNullLauncher - ${{ steps.get_version.outputs.version }}
+          release_name: ShortLifeTexture - ${{ steps.get_version.outputs.version }}
           body: |
             ダウンロードはこちらから！
             [ダウンロード](https://github.com/${{ github.repository }}/releases/download/${{ steps.get_version.outputs.version }}/TexturePack.zip)
