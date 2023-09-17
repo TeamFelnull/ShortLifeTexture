@@ -1,0 +1,15 @@
+{
+	"parent": "item/handheld",
+	"textures": {
+		"layer0": "item/rabbit_foot"
+	},
+	"overrides": [
+		{"predicate": {"custom_model_data":0}, "model":"item/rabbit_foot"},
+
+		{"predicate": {"custom_model_data":   1}, "model":"item/misc/kvass"},
+	
+        {"predicate": {"custom_model_data":1001}, "model":"item/weapons/mp5_2d"},
+    
+        {"predicate": {"custom_model_data":2001}, "model":"item/weapons/mp5_2d"}
+	]
+}
