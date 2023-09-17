@@ -1,0 +1,15 @@
+{
+	"parent": "item/handheld",
+	"textures": {
+		"layer0": "item/echo_shard"
+	},
+	"overrides": [
+		{"predicate": {"custom_model_data":0}, "model":"item/echo_shard"},
+
+		{"predicate": {"custom_model_data":   1}, "model":"item/weapons/mp5_2d"},
+	
+        {"predicate": {"custom_model_data":1001}, "model":"item/weapons/mp5_2d"},
+    
+        {"predicate": {"custom_model_data":2001}, "model":"item/weapons/mp5_2d"}
+	]
+}
