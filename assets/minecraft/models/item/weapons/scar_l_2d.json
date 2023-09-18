@@ -2,8 +2,8 @@
 	"credit": "Made with Blockbench",
 	"parent": "item/handheld",
 	"textures": {
-		"particle": "G:/共有ドライブ/TeamFelNull銃/開発関係/Texture/SCAR-L",
-		"layer0": "G:/共有ドライブ/TeamFelNull銃/開発関係/Texture/SCAR-L"
+		"particle": "item/scar_l_2d",
+		"layer0": "item/scar_l_2d"
 	},
 	"display": {
 		"thirdperson_righthand": {
