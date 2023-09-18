@@ -1,0 +1,28 @@
+{
+	"credit": "Made with Blockbench",
+	"parent": "item/handheld",
+	"textures": {
+		"particle": "G:/共有ドライブ/TeamFelNull銃/開発関係/Texture/SCAR-L",
+		"layer0": "G:/共有ドライブ/TeamFelNull銃/開発関係/Texture/SCAR-L"
+	},
+	"display": {
+		"thirdperson_righthand": {
+			"rotation": [-45, -90, 0],
+			"translation": [-2, 1.5, 0],
+			"scale": [0.95, 0.95, 0.95]
+		},
+		"thirdperson_lefthand": {
+			"rotation": [-45, 90, 0],
+			"translation": [-2, 1.5, 0],
+			"scale": [0.95, 0.95, 0.95]
+		},
+		"ground": {
+			"translation": [0, 2.25, 0]
+		},
+		"head": {
+			"rotation": [0, 0, 23],
+			"translation": [1, -20.25, 4],
+			"scale": [1.25, 1.25, 1.25]
+		}
+	}
+}
