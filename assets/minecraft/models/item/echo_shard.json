@@ -8,5 +8,9 @@
 
 		{"predicate": {"custom_model_data":   1}, "model":"item/weapons/mp5_2d"},
 		{"predicate": {"custom_model_data":   2}, "model":"item/weapons/scar_l_2d"}
+		{"predicate": {"custom_model_data":   3}, "model":"item/weapons/hkusp_2d"}
+		{"predicate": {"custom_model_data":   4}, "model":"item/weapons/ak47_2d"}
+		{"predicate": {"custom_model_data":   5}, "model":"item/weapons/deserteagle_2d"}
+		{"predicate": {"custom_model_data":   6}, "model":"item/weapons/mp7_2d"}
 	]
 }
