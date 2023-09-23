@@ -11,6 +11,10 @@
 		{"predicate": {"custom_model_data":   3}, "model":"item/weapons/hkusp_2d"},
 		{"predicate": {"custom_model_data":   4}, "model":"item/weapons/ak47_2d"},
 		{"predicate": {"custom_model_data":   5}, "model":"item/weapons/deserteagle_2d"},
-		{"predicate": {"custom_model_data":   6}, "model":"item/weapons/mp7_2d"}
+		{"predicate": {"custom_model_data":   6}, "model":"item/weapons/mp7_2d"},
+		{"predicate": {"custom_model_data":   7}, "model":"item/weapons/mosinnagant_2d"},
+		{"predicate": {"custom_model_data":   8}, "model":"item/weapons/spas_12_2d"},
+		{"predicate": {"custom_model_data":   9}, "model":"item/weapons/fiveseven_2d"},
+		{"predicate": {"custom_model_data":   10}, "model":"item/weapons/origin_12_2d"}
 	]
 }
