@@ -15,6 +15,8 @@
 		{"predicate": {"custom_model_data":   7}, "model":"item/weapons/mosinnagant_2d"},
 		{"predicate": {"custom_model_data":   8}, "model":"item/weapons/spas_12_2d"},
 		{"predicate": {"custom_model_data":   9}, "model":"item/weapons/fiveseven_2d"},
-		{"predicate": {"custom_model_data":   10}, "model":"item/weapons/origin_12_2d"}
+		{"predicate": {"custom_model_data":   10}, "model":"item/weapons/origin_12_2d"},
+		{"predicate": {"custom_model_data":   11}, "model":"item/weapons/fivesevenb_2d"},
+		{"predicate": {"custom_model_data":   12}, "model":"item/weapons/famas_2d"}
 	]
 }
