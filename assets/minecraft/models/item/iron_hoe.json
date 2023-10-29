@@ -1,7 +1,7 @@
 {
 	"parent": "item/handheld",
 	"textures": {
-		"layer0": "item/feather"
+		"layer0": "item/iron_hoe"
 	},
 	"overrides": [
         
@@ -13,7 +13,7 @@
         {"predicate": {"custom_model_data":-10}, "model":"item/weapons/combatknife"},
 		{"predicate": {"custom_model_data":-1}, "model":"item/weapons/stim"},
 
-        {"predicate": {"custom_model_data":0}, "model":"item/feather"},
+        {"predicate": {"custom_model_data":0}, "model":"item/iron_hoe"},
 
 		{"predicate": {"custom_model_data":   1}, "model":"item/weapons/uzi"},
         {"predicate": {"custom_model_data":   2}, "model":"item/weapons/aug"},

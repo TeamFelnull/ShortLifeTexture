@@ -1,10 +1,10 @@
 {
 	"parent": "item/handheld",
 	"textures": {
-		"layer0": "item/echo_shard"
+		"layer0": "item/wooden_hoe"
 	},
 	"overrides": [
-		{"predicate": {"custom_model_data":0}, "model":"item/echo_shard"},
+		{"predicate": {"custom_model_data":0}, "model":"item/wooden_hoe"},
 
 		{"predicate": {"custom_model_data":   1}, "model":"item/weapons/mp5_2d"},
 		{"predicate": {"custom_model_data":   2}, "model":"item/weapons/scar_l_2d"},
