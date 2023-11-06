@@ -21,7 +21,7 @@ jobs:
       - name: Replace Text # 文字列置換処理
         run: |
           # タグ名に置き換え
-          sed -e "s/${tag}/${{ github.ref_name }}/g" pack.mcmeta > pack.mcmeta_rep
+          sed -e "s/\${tag}/${{ github.ref_name }}/g" pack.mcmeta > pack.mcmeta_rep
           mv pack.mcmeta_rep pack.mcmeta
 
       - name: Generate ZIP
