@@ -1,7 +1,6 @@
 name: TexturePackGenerator
 
 on:
-  workflow_dispatch:
   push:
     tags:
       - 'v1.*'
@@ -31,36 +30,18 @@ jobs:
         run: |
           mkdir upload && mv TexturePack.zip upload/
 
-
-      - name: Get latest release version tag number
-        id: get_version
-        uses: battila7/get-version-action@v2
-      - name: Create Release
-        id: create_release
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUBTOKEN }}
+      - name: Actions Upload
+        uses: actions/upload-artifact@v1
         with:
-          tag_name: ${{ steps.get_version.outputs.version }}
-          release_name: ShortLifeTexture - ${{ steps.get_version.outputs.version }}
+          name: Release
+          path: upload/*
+
+      - name: GitHub Releases #Githubにリリース
+        uses: softprops/action-gh-release@v1
+        with:
           body: |
             ダウンロードはこちらから！
             [ダウンロード](https://github.com/${{ github.repository }}/releases/download/${{ steps.get_version.outputs.version }}/TexturePack.zip)
 
             Build by ${{ github.actor }}
-          draft: false
-          prerelease: false
-      - uses: xresloader/upload-to-github-release@v1
-        name: Upload Release File
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUBTOKEN }}
-        with:
-          file: "upload"
-          tags: true
-          draft: false
-          tag_name: ${{ steps.get_version.outputs.version }}
-      - uses: actions/upload-artifact@v1
-        name: Actions Upload
-        with:
-          name: Release
-          path: upload
+          files: upload/*
