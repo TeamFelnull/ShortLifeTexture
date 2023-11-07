@@ -30,8 +30,8 @@ jobs:
         run: |
           mkdir upload && mv TexturePack.zip upload/
 
-      - name: Actions Upload
-        uses: actions/upload-artifact@v1
+      - name: Upload Artifact #アーティファクトをアップロード
+        uses: actions/upload-artifact@v3
         with:
           name: Release
           path: upload/*
