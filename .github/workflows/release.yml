@@ -39,6 +39,7 @@ jobs:
       - name: GitHub Releases #Githubにリリース
         uses: softprops/action-gh-release@v1
         with:
+          name: ShortLifeTexture - ${{ github.ref_name }}
           body: |
             ダウンロードはこちらから！
             [ダウンロード](https://github.com/${{ github.repository }}/releases/download/${{ github.ref_name }}/TexturePack.zip)
