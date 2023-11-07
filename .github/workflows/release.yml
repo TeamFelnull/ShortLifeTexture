@@ -41,7 +41,7 @@ jobs:
         with:
           body: |
             ダウンロードはこちらから！
-            [ダウンロード](https://github.com/${{ github.repository }}/releases/download/${{ steps.get_version.outputs.version }}/TexturePack.zip)
+            [ダウンロード](https://github.com/${{ github.repository }}/releases/download/${{ github.ref_name }}/TexturePack.zip)
 
             Build by ${{ github.actor }}
           files: upload/*
