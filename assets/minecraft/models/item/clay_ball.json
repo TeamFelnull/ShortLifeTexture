@@ -7,6 +7,7 @@
 		{"predicate": {"custom_model_data":0}, "model":"item/clay_ball"},
 
 		{"predicate": {"custom_model_data":   1}, "model":"item/misc/kaishusizai"},
+		{"predicate": {"custom_model_data":   2}, "model":"item/weapon/stim"},
 	
         {"predicate": {"custom_model_data":1001}, "model":"item/weapons/mp5_2d"},
     
