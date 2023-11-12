@@ -24,6 +24,7 @@
 		{"predicate": {"custom_model_data":   16}, "model":"item/weapons/ktr09_2d"},
 		{"predicate": {"custom_model_data":   17}, "model":"item/weapons/ktr09_drum_2d"},
 		{"predicate": {"custom_model_data":   18}, "model":"item/weapons/m4a1_2d"},
-		{"predicate": {"custom_model_data":   19}, "model":"item/weapons/m4a1_mod2_2d"}
+		{"predicate": {"custom_model_data":   19}, "model":"item/weapons/m4a1_mod2_2d"},
+		{"predicate": {"custom_model_data":   20}, "model":"item/weapons/fn_minimi_2d"}
 	]
 }
