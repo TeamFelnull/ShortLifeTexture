@@ -259,5 +259,21 @@
   "custom.highbeat": {
     "category": "master",
     "sounds": ["misc/highbeat"]
+  },
+  "shortlife.get": {
+    "category": "master",
+    "sounds": ["misc/get"]
+  },
+  "shortlife.hitsound": {
+    "category": "master",
+    "sounds": ["misc/hitsound"]
+  },
+  "shortlife.hitsound2": {
+    "category": "master",
+    "sounds": ["misc/hitsound2"]
+  },
+  "shortlife.hitsound3": {
+    "category": "master",
+    "sounds": ["misc/hitsound3"]
   }
 }
