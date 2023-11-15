@@ -260,6 +260,10 @@
     "category": "master",
     "sounds": ["misc/highbeat"]
   },
+  "shoot.m4a1silenced.loud": {
+    "category": "master",
+    "sounds": ["shoot/loud/m4a1_silenced"]
+  },
   "shortlife.get": {
     "category": "master",
     "sounds": ["misc/get"]
