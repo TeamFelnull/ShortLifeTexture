@@ -1,0 +1,2 @@
+スコアボード数字削除:
+https://github.com/McTsts/mc-core-shaders/tree/main/hide%20sidebar%20numbers
