@@ -11,6 +11,6 @@
 		{"predicate": {"custom_model_data":   3}, "model":"item/misc/secretgirl"},
 		{"predicate": {"custom_model_data":   4}, "model":"item/misc/ticket"},
 		{"predicate": {"custom_model_data":   5}, "model":"item/misc/kanshanokakera"},
-		{"predicate": {"custom_model_data":   6}, "model":"item/misc/kanshanokimoti"},
+		{"predicate": {"custom_model_data":   6}, "model":"item/misc/kanshanokimoti"}
 	]
 }
