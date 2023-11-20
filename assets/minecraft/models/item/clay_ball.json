@@ -11,6 +11,10 @@
 		{"predicate": {"custom_model_data":   3}, "model":"item/misc/secretgirl"},
 		{"predicate": {"custom_model_data":   4}, "model":"item/misc/ticket"},
 		{"predicate": {"custom_model_data":   5}, "model":"item/misc/kanshanokakera"},
-		{"predicate": {"custom_model_data":   6}, "model":"item/misc/kanshanokimoti"}
+		{"predicate": {"custom_model_data":   6}, "model":"item/misc/kanshanokimoti"},
+		{"predicate": {"custom_model_data":   7}, "model":"item/misc/bronzeticket"},
+		{"predicate": {"custom_model_data":   8}, "model":"item/misc/silverticket"},
+		{"predicate": {"custom_model_data":   9}, "model":"item/misc/goldticket"},
+		{"predicate": {"custom_model_data":   10}, "model":"item/misc/rainbowticket"}
 	]
 }
