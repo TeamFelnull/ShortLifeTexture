@@ -1,7 +1,6 @@
 name: TexturePackGenerator
 
 on:
-  workflow_dispatch:
   push:
     tags:
       - 'v1.*'
@@ -17,6 +16,13 @@ jobs:
       - name: Delete Readme
         run: |
           rm README.md
+
+      - name: Replace Text # 文字列置換処理
+        run: |
+          # タグ名に置き換え
+          sed -e "s/\${tag}/${{ github.ref_name }}/g" pack.mcmeta > pack.mcmeta_rep
+          mv pack.mcmeta_rep pack.mcmeta
+
       - name: Generate ZIP
         run: |
           zip TexturePack -r ./*
@@ -24,36 +30,19 @@ jobs:
         run: |
           mkdir upload && mv TexturePack.zip upload/
 
-
-      - name: Get latest release version tag number
-        id: get_version
-        uses: battila7/get-version-action@v2
-      - name: Create Release
-        id: create_release
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUBTOKEN }}
-        with:
-          tag_name: ${{ steps.get_version.outputs.version }}
-          release_name: ShortLifeTexture - ${{ steps.get_version.outputs.version }}
-          body: |
-            ダウンロードはこちらから！
-            [ダウンロード](https://github.com/${{ github.repository }}/releases/download/${{ steps.get_version.outputs.version }}/TexturePack.zip)
-
-            Build by ${{ github.actor }}
-          draft: false
-          prerelease: false
-      - uses: xresloader/upload-to-github-release@v1
-        name: Upload Release File
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUBTOKEN }}
-        with:
-          file: "upload"
-          tags: true
-          draft: false
-          tag_name: ${{ steps.get_version.outputs.version }}
-      - uses: actions/upload-artifact@v1
-        name: Actions Upload
+      - name: Upload Artifact #アーティファクトをアップロード
+        uses: actions/upload-artifact@v3
         with:
           name: Release
-          path: upload
+          path: upload/*
+
+      - name: GitHub Releases #Githubにリリース
+        uses: softprops/action-gh-release@v1
+        with:
+          name: ShortLifeTexture - ${{ github.ref_name }}
+          body: |
+            ダウンロードはこちらから！
+            [ダウンロード](https://github.com/${{ github.repository }}/releases/download/${{ github.ref_name }}/TexturePack.zip)
+
+            Build by ${{ github.actor }}
+          files: upload/*

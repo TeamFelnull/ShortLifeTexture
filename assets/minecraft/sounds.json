@@ -251,5 +251,33 @@
   "shoot.fatman.loud": {
     "category": "master",
     "sounds": ["shoot/loud/fatman"]
+  },
+  "custom.lowbeat": {
+    "category": "master",
+    "sounds": ["misc/lowbeat"]
+  },
+  "custom.highbeat": {
+    "category": "master",
+    "sounds": ["misc/highbeat"]
+  },
+  "shoot.m4a1silenced.loud": {
+    "category": "master",
+    "sounds": ["shoot/loud/m4a1_silenced"]
+  },
+  "shortlife.get": {
+    "category": "master",
+    "sounds": ["misc/get"]
+  },
+  "shortlife.hitsound": {
+    "category": "master",
+    "sounds": ["misc/hitsound"]
+  },
+  "shortlife.hitsound2": {
+    "category": "master",
+    "sounds": ["misc/hitsound2"]
+  },
+  "shortlife.hitsound3": {
+    "category": "master",
+    "sounds": ["misc/hitsound3"]
   }
 }

@@ -32,6 +32,10 @@
         {"predicate": {"custom_model_data":  15}, "model":"item/weapons/stg44"},
         {"predicate": {"custom_model_data":  16}, "model":"item/weapons/fatman"},
         {"predicate": {"custom_model_data":  17}, "model":"item/weapons/fatman_rock"},
+        {"predicate": {"custom_model_data":  18}, "model":"item/weapons/asval_eotech"},
+        {"predicate": {"custom_model_data":  19}, "model":"item/weapons/asval_ironsight"},
+        {"predicate": {"custom_model_data":  20}, "model":"item/weapons/mp7_eotech"},
+        {"predicate": {"custom_model_data":  21}, "model":"item/weapons/mp7_ironsight"},
 
         {"predicate": {"custom_model_data":1001}, "model":"item/weapons/uziaiming"},
         {"predicate": {"custom_model_data":1002}, "model":"item/weapons/augaiming"},
