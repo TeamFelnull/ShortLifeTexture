@@ -2,8 +2,8 @@
 	"credit": "Made with Blockbench",
 	"parent": "item/handheld",
 	"textures": {
-		"particle": "item/famas_2d",
-		"layer0": "item/famas_2d"
+		"particle": "item/mp5_nightpunk",
+		"layer0": "item/mp5_nightpunk"
 	},
 	"display": {
 		"thirdperson_righthand": {
