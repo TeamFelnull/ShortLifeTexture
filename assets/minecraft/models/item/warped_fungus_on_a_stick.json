@@ -32,6 +32,7 @@
 		{"predicate": {"custom_model_data":      23}, "model":"item/weapons/x21_reddragoon_2d"},
 		{"predicate": {"custom_model_data":      24}, "model":"item/weapons/fatman_rock"},
 		{"predicate": {"custom_model_data":      25}, "model":"item/weapons/ax50"},
+		{"predicate": {"custom_model_data":      26}, "model":"item/weapons/mp5_nightpunk"},
 
 
 		{"predicate": {"custom_model_data":    1004}, "model":"item/weapons/ak47_2d"},
