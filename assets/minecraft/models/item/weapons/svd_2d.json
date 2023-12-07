@@ -2,8 +2,8 @@
 	"credit": "Made with Blockbench",
 	"parent": "item/handheld",
 	"textures": {
-		"particle": "item/SVD_2d",
-		"layer0": "item/SVD_2d"
+		"particle": "item/pso_svd_2d",
+		"layer0": "item/pso_svd_2d"
 	},
 	"display": {
 		"thirdperson_righthand": {
