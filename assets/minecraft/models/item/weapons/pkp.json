@@ -5,8 +5,8 @@
 		"1": "block/nextcolor/gray2",
 		"4": "block/nextcolor/brown",
 		"6": "block/nextcolor/green",
-		"7": "block/nextcolor/Yellow1",
-		"8": "block/nextcolor/Yellow2",
+		"7": "block/nextcolor/yellow1",
+		"8": "block/nextcolor/yellow2",
 		"particle": "block/nextcolor/gray1"
 	},
 	"elements": [

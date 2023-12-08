@@ -7,8 +7,8 @@
 		"3": "block/nextcolor/gray4",
 		"4": "block/nextcolor/gray2",
 		"5": "block/nextcolor/gray3",
-		"6": "block/nextcolor/Yellow",
-		"particle": "block/nextcolor/Yellow"
+		"6": "block/nextcolor/yellow",
+		"particle": "block/nextcolor/yellow"
 	},
 	"elements": [
 		{
