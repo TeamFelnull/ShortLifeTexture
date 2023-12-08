@@ -37,6 +37,7 @@
 		{"predicate": {"custom_model_data":      28}, "model":"item/weapons/svd_2d"},
 		{"predicate": {"custom_model_data":      29}, "model":"item/weapons/ar57_2d"},
 		{"predicate": {"custom_model_data":      30}, "model":"item/weapons/pkp_2d"},
+                {"predicate": {"custom_model_data":      31}, "model":"item/weapons/m950_2d"},
 
 
 		
