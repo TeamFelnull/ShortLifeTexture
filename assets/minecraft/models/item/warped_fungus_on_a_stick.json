@@ -35,7 +35,7 @@
 		{"predicate": {"custom_model_data":      26}, "model":"item/weapons/mp5_nightpunk_2d"},
 		{"predicate": {"custom_model_data":      27}, "model":"item/weapons/survival_knife"},
 		{"predicate": {"custom_model_data":      28}, "model":"item/weapons/svd_2d"},
-		{"predicate": {"custom_model_data":      29}, "model":"item/weapons/ar57_2d"},
+		{"predicate": {"custom_model_data":      29}, "model":"item/weapons/ar57"},
 		{"predicate": {"custom_model_data":      30}, "model":"item/weapons/pkp_2d"},
                 {"predicate": {"custom_model_data":      31}, "model":"item/weapons/m950_2d"},
 
@@ -85,7 +85,6 @@
 		{"predicate": {"custom_model_data":   10023}, "model":"item/weapons/x21_reddragoon"},
 		{"predicate": {"custom_model_data":   10024}, "model":"item/weapons/fatman_rock"},
 		{"predicate": {"custom_model_data":   10025}, "model":"item/weapons/ax50"},
-		{"predicate": {"custom_model_data":   10029}, "model":"item/weapons/ar57"},
 		{"predicate": {"custom_model_data":   10030}, "model":"item/weapons/pkp"},
 
 
