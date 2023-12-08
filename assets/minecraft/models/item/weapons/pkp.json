@@ -1,14 +1,14 @@
 {
 	"credit": "Made with Blockbench",
 	"textures": {
-		"0": "textures/3dtexture/gray2",
-		"1": "textures/3dtexture/gray1",
-		"2": "textures/3dtexture/gray1",
-		"4": "textures/3dtexture/green",
-		"6": "textures/3dtexture/brown",
-		"7": "textures/3dtexture/Yellow2",
-		"8": "textures/3dtexture/Yellow1",
-		"particle": "textures/3dtexture/gray2"
+		"0": "3dtexture/gray2",
+		"1": "3dtexture/gray1",
+		"2": "3dtexture/gray1",
+		"4": "3dtexture/green",
+		"6": "3dtexture/brown",
+		"7": "3dtexture/Yellow2",
+		"8": "3dtexture/Yellow1",
+		"particle": "3dtexture/gray2"
 	},
 	"elements": [
 		{

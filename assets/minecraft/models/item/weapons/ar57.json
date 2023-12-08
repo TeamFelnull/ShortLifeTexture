@@ -1,12 +1,12 @@
 {
 	"credit": "Made with Blockbench",
 	"textures": {
-		"0": "textures/3dtexture/gray1",
-		"1": "textures/3dtexture/Yellow",
-		"2": "textures/3dtexture/gray2",
-		"3": "textures/3dtexture/green",
-		"4": "textures/3dtexture/brown",
-		"5": "textures/3dtexture/gray3"
+		"0": "3dtexture/gray1",
+		"1": "3dtexture/Yellow",
+		"2": "3dtexture/gray2",
+		"3": "3dtexture/green",
+		"4": "3dtexture/brown",
+		"5": "3dtexture/gray3"
 	},
 	"elements": [
 		{
