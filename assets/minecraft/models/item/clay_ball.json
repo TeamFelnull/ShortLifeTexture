@@ -15,6 +15,7 @@
 		{"predicate": {"custom_model_data":   7}, "model":"item/misc/bronzeticket"},
 		{"predicate": {"custom_model_data":   8}, "model":"item/misc/silverticket"},
 		{"predicate": {"custom_model_data":   9}, "model":"item/misc/goldticket"},
-		{"predicate": {"custom_model_data":   10}, "model":"item/misc/rainbowticket"}
+		{"predicate": {"custom_model_data":   10}, "model":"item/misc/rainbowticket"},
+		{"predicate": {"custom_model_data":   11}, "model":"item/misc/loligod"}
 	]
 }
