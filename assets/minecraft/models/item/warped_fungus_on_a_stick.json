@@ -44,6 +44,8 @@
         {"predicate": {"custom_model_data":      35}, "model":"item/weapons/ar15_2d"},
         {"predicate": {"custom_model_data":      36}, "model":"item/weapons/ump45_2d"},
         {"predicate": {"custom_model_data":      37}, "model":"item/weapons/tt33_2d"},
+        {"predicate": {"custom_model_data":      38}, "model":"item/weapons/uzi_2d"},
+        {"predicate": {"custom_model_data":      39}, "model":"item/weapons/ingram_mac10_2d"},
 
 
 		
