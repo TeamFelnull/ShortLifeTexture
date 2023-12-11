@@ -40,6 +40,9 @@
         {"predicate": {"custom_model_data":      31}, "model":"item/weapons/m950_2d"},
         {"predicate": {"custom_model_data":      32}, "model":"item/weapons/m1910_2d"},
         {"predicate": {"custom_model_data":      33}, "model":"item/weapons/hk416_2d"},
+        {"predicate": {"custom_model_data":      34}, "model":"item/weapons/pgm_hecate2_2d"},
+        {"predicate": {"custom_model_data":      35}, "model":"item/weapons/ar15_2d"},
+        {"predicate": {"custom_model_data":      36}, "model":"item/weapons/ump45_2d"},
 
 
 		
