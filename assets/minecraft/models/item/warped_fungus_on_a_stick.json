@@ -46,6 +46,11 @@
         {"predicate": {"custom_model_data":      37}, "model":"item/weapons/tt33_2d"},
         {"predicate": {"custom_model_data":      38}, "model":"item/weapons/uzi_2d"},
         {"predicate": {"custom_model_data":      39}, "model":"item/weapons/ingram_mac10_2d"},
+		{"predicate": {"custom_model_data":      40}, "model":"item/weapons/hk33_2d"},
+		{"predicate": {"custom_model_data":      41}, "model":"item/weapons/m14_2d"},
+		{"predicate": {"custom_model_data":      42}, "model":"item/weapons/m70_90_2d"},
+		{"predicate": {"custom_model_data":      43}, "model":"item/weapons/pso_taduk_2d"},
+		{"predicate": {"custom_model_data":      44}, "model":"item/weapons/vss_2d"},
 
 
 		
