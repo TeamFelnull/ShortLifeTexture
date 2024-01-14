@@ -26,7 +26,7 @@ jobs:
           zip TexturePack -r ./*
       - name: mv ZIP
         run: |
-          mkdir upload && mv TexturePack.zip upload/
+          mkdir upload && mv pack/TexturePack.zip upload/
 
       - name: Upload Artifact #アーティファクトをアップロード
         uses: actions/upload-artifact@v3
