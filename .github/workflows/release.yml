@@ -12,20 +12,17 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-
-      - name: Delete Readme
-        run: |
-          rm README.md
-
       - name: Replace Text # 文字列置換処理
         run: |
+          cd ./pack
+
           # タグ名に置き換え
           sed -e "s/\${tag}/${{ github.ref_name }}/g" pack.mcmeta > pack.mcmeta_rep
           mv pack.mcmeta_rep pack.mcmeta
 
       - name: Generate ZIP
         run: |
-          zip TexturePack -r ./*
+          zip TexturePack -r ./pack/*
       - name: mv ZIP
         run: |
           mkdir upload && mv TexturePack.zip upload/
