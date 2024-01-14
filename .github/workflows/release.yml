@@ -22,7 +22,8 @@ jobs:
 
       - name: Generate ZIP
         run: |
-          zip TexturePack -r ./pack/*
+          cd ./pack
+          zip TexturePack -r ./*
       - name: mv ZIP
         run: |
           mkdir upload && mv TexturePack.zip upload/
