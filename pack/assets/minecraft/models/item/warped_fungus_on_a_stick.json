@@ -53,7 +53,7 @@
 		{"predicate": {"custom_model_data":      44}, "model":"item/weapons/vss_2d"},
 		{"predicate": {"custom_model_data":      45}, "model":"item/weapons/light_sword_2d"},
 		{"predicate": {"custom_model_data":      46}, "model":"item/weapons/rokanren_2d"},
-
+		{"predicate": {"custom_model_data":      47}, "model":"item/weapons/p90_2d"},
 
 
 		{"predicate": {"custom_model_data":    1004}, "model":"item/weapons/ak47_2d"},
