@@ -1,0 +1,21 @@
+{
+	"parent": "item/handheld",
+	"textures": {
+		"layer0": "item/flint"
+	},
+	"overrides": [
+		{"predicate": {"custom_model_data":0}, "model":"item/flint"},
+
+		{"predicate": {"custom_model_data":   1}, "model":"item/attachment/m4a1_acog"},
+		{"predicate": {"custom_model_data":   2}, "model":"item/weapons/stim"},
+		{"predicate": {"custom_model_data":   3}, "model":"item/misc/secretgirl"},
+		{"predicate": {"custom_model_data":   4}, "model":"item/misc/ticket"},
+		{"predicate": {"custom_model_data":   5}, "model":"item/misc/kanshanokakera"},
+		{"predicate": {"custom_model_data":   6}, "model":"item/misc/kanshanokimoti"},
+		{"predicate": {"custom_model_data":   7}, "model":"item/misc/bronzeticket"},
+		{"predicate": {"custom_model_data":   8}, "model":"item/misc/silverticket"},
+		{"predicate": {"custom_model_data":   9}, "model":"item/misc/goldticket"},
+		{"predicate": {"custom_model_data":   10}, "model":"item/misc/rainbowticket"},
+		{"predicate": {"custom_model_data":   11}, "model":"item/misc/loligod"}
+	]
+}
