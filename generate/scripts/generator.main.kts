@@ -197,6 +197,7 @@ runBlocking {
         // Minecraftのクライアントjarを解凍
         val mcJarIn = BufferedInputStream(FileInputStream(mcJarFile))
         val zipIn = ZipInputStream(mcJarIn)
+        println("ダウンロード完了")
 
         withContext(Dispatchers.Default) {
             zipIn.use {
@@ -211,11 +212,11 @@ runBlocking {
                         val path = Paths.get(mcResFolder.path, entry.name)
                         syncMkdir(path.parent.toFile())
                         Files.write(path, it.readAllBytes())
-                        println(entry.name)
                     }
 
                     entry = it.nextEntry
                 }
+                println("展開完了")
             }
         }
     }
