@@ -197,7 +197,6 @@ runBlocking {
         // Minecraftのクライアントjarを解凍
         val mcJarIn = BufferedInputStream(FileInputStream(mcJarFile))
         val zipIn = ZipInputStream(mcJarIn)
-        println("ダウンロード完了")
 
         withContext(Dispatchers.Default) {
             zipIn.use {
@@ -216,7 +215,6 @@ runBlocking {
 
                     entry = it.nextEntry
                 }
-                println("展開完了")
             }
         }
     }
@@ -435,6 +433,9 @@ fun loadResourceHolder(locationFile: ResourceLocationFile, mcClientRes: Boolean)
  */
 fun loadMcResourceHolder(locationFile: ResourceLocationFile): ResourceHolder? {
     val mcFile = locationFile.mcResFile()
+
+    println(mcFile)
+    println(mcFile.canonicalFile)
 
     if (!mcFile.exists() || mcFile.isDirectory) {
         return null
