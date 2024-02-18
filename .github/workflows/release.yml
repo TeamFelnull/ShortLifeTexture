@@ -33,8 +33,8 @@ jobs:
 
       - name: mv Out Files
         run: |
-          mkdir upload && mv pack/TexturePack.zip upload/
-          mv pack/pack_map.json upload/
+          mkdir upload && mv out/TexturePack.zip upload/
+          mv out/pack_map.json upload/
 
       - name: Upload Artifact #アーティファクトをアップロード
         uses: actions/upload-artifact@v3
