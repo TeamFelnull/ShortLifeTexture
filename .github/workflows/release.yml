@@ -33,7 +33,7 @@ jobs:
 
       - name: mv Out Files
         run: |
-          mkdir upload && mv out/TexturePack.zip upload/
+          mkdir upload && mv out/TexturePack/TexturePack.zip upload/
           mv out/pack_map.json upload/
 
       - name: Upload Artifact #アーティファクトをアップロード
