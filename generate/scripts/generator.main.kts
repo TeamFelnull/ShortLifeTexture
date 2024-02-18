@@ -202,6 +202,8 @@ runBlocking {
             zipIn.use {
                 var entry = it.nextEntry
 
+                Thread.sleep(1000)
+
                 while (entry != null) {
 
                     // 今のところモデルのみ展開
@@ -209,6 +211,7 @@ runBlocking {
                         val path = Paths.get(mcResFolder.path, entry.name)
                         syncMkdir(path.parent.toFile())
                         Files.write(path, it.readAllBytes())
+                        println(entry.name)
                     }
 
                     entry = it.nextEntry
@@ -220,8 +223,6 @@ runBlocking {
     outDirJob.join()
     tmpDirJob.join()
 }
-
-
 
 val preProcTime = stopWatch.elapsed(TimeUnit.MILLISECONDS)
 println("事前処理完了\t経過時間: ${preProcTime}ms")
