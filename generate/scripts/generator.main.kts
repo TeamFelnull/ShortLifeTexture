@@ -529,7 +529,7 @@ fun packNameSpaceFile(nameSpace: String, path: Path): File {
  * Minecraftクライアントリソースのassets/minecraft以下から相対的なファイルを取得
  */
 fun mcResSpaceFile(path: Path): File {
-    val nameSpaceFile = File(mcResFolder, "assets\\minecraft")
+    val nameSpaceFile = File(mcResFolder, "assets/minecraft")
     return nameSpaceFile.toPath().resolve(path).toFile()
 }
 
