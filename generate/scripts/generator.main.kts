@@ -49,7 +49,7 @@ import java.util.function.Function
 import java.util.zip.ZipInputStream
 import javax.imageio.ImageIO
 import kotlin.coroutines.EmptyCoroutineContext
-import kotlin.streams.toList
+import kotlin.streams.toList // <- 消したらActions本番環境で動かなくなる
 
 /*
 それぞれのディレクトリの名称
@@ -220,6 +220,7 @@ runBlocking {
     outDirJob.join()
     tmpDirJob.join()
 }
+
 
 
 val preProcTime = stopWatch.elapsed(TimeUnit.MILLISECONDS)
