@@ -434,9 +434,6 @@ fun loadResourceHolder(locationFile: ResourceLocationFile, mcClientRes: Boolean)
 fun loadMcResourceHolder(locationFile: ResourceLocationFile): ResourceHolder? {
     val mcFile = locationFile.mcResFile()
 
-    println(mcFile)
-    println(mcFile.canonicalFile)
-
     if (!mcFile.exists() || mcFile.isDirectory) {
         return null
     }
@@ -779,16 +776,14 @@ data class ResourceLocationFile(val location: ResourceLocation, val extension: S
      * パックディレクトリから相対的なファイルを取得
      */
     fun packFile(): File {
-        val locationPath = location.path.replace("/", "\\")
-        return packNameSpaceFile(location.nameSpace, Path.of("${locationPath}.${extension}"))
+        return packNameSpaceFile(location.nameSpace, Path.of("${location.path}.${extension}"))
     }
 
     /**
      * Minecraftクライアントリソースから相対的なファイルを取得
      */
     fun mcResFile(): File {
-        val locationPath = location.path.replace("/", "\\")
-        return mcResSpaceFile(Path.of("${locationPath}.${extension}"))
+        return mcResSpaceFile(Path.of("${location.path}.${extension}"))
     }
 
     /**
