@@ -49,7 +49,6 @@ import java.util.function.Function
 import java.util.zip.ZipInputStream
 import javax.imageio.ImageIO
 import kotlin.coroutines.EmptyCoroutineContext
-import kotlin.streams.toList // <- 消したらActions本番環境で動かなくなる
 
 /*
 それぞれのディレクトリの名称
@@ -156,7 +155,12 @@ val packAssetsDir = File(packFolder, "assets")
 /**
  * 基本的なアイテムモデルのテンプレート
  */
-val basicFlatItemModelTemplate = JsonTemplate<BasicItemApplier>(templateModelFile("basic_flat_item.json"))
+val basicFlatItemModelTemplate = JsonTemplate<SimpleItemApplier>(templateModelFile("basic_flat_item.json"))
+
+/**
+ * 剣やピッケルなど道具のような持ち方をするアイテムモデルのテンプレート
+ */
+val handHeldItemModelTemplate = JsonTemplate<SimpleItemApplier>(templateModelFile("handheld_item.json"))
 
 /* ------------------------------------------------------------------------------------------------------------ */
 
@@ -201,8 +205,6 @@ runBlocking {
         withContext(Dispatchers.Default) {
             zipIn.use {
                 var entry = it.nextEntry
-
-                Thread.sleep(1000)
 
                 while (entry != null) {
 
@@ -324,9 +326,20 @@ fun initTasks() {
     // /give @s minecraft:slime_ball{CustomModelData:1}
 
     // 例
+    basicFlatItemModelTask("slime_ball", "test", resItemTexFile("test_1.png"))
+
+
     // basicFlatItemModelTask("slime_ball", 1, resItemTexFile("test.png"))
     // basicFlatItemModelTask("slime_ball", 3, slLoc("item/test"))
+    /*basicFlatItemModelTask("slime_ball", "test", resItemTexFile("test_1.png"))
     basicFlatItemModelTask("slime_ball", "test", resItemTexFile("test_1.png"))
+    basicFlatItemModelTask("slime_ball", "gui/background", resGuiTexFile("background.png"))*/
+
+
+    /*  basicFlatItemModelTask("slime_ball", 10, slLoc("item/test"))
+      basicFlatItemModelTask("slime_ball", 12, slLoc("item/test"))
+
+      basicFlatItemModelTask("slime_ball", "", slLoc("item/test"))*/
 }
 
 /**
@@ -341,7 +354,7 @@ fun basicFlatItemModelTask(injectItemModelName: String, mappingId: String, textu
     // モデル生成タスクを登録
     val modelLocFile = locationFileByModel(slLoc("item/${FNStringUtil.removeExtension(textureFile.name)}"))
     val modelLoc = reservationNumberingResourceHolders(modelLocFile).toModelLocation()
-    regTask(ModelGenTask(basicFlatItemModelTemplate, BasicItemApplier(texLoc), modelLoc))
+    regTask(ModelGenTask(basicFlatItemModelTemplate, SimpleItemApplier(texLoc), modelLoc))
 
     // モデル注入タスクを登録
     regTask(ModelNumberingInjectionTask(injectItemModelName, mappingId, modelLoc))
@@ -354,7 +367,7 @@ fun basicFlatItemModelTask(injectItemModelName: String, customModelNum: Int, tex
     // モデル生成タスクを登録
     val modelLocFile = locationFileByModel(textureLocation)
     val modelLoc = reservationNumberingResourceHolders(modelLocFile).toModelLocation()
-    regTask(ModelGenTask(basicFlatItemModelTemplate, BasicItemApplier(textureLocation), modelLoc))
+    regTask(ModelGenTask(basicFlatItemModelTemplate, SimpleItemApplier(textureLocation), modelLoc))
 
     // 注入先モデルにモデルを登録
     val injectModelLocFile = locationFileByModel(ResourceLocation("item/$injectItemModelName"))
@@ -376,7 +389,7 @@ fun basicFlatItemModelTask(injectItemModelName: String, customModelNum: Int, tex
     // モデル生成タスクを登録
     val modelLocFile = locationFileByModel(slLoc("item/${FNStringUtil.removeExtension(textureFile.name)}"))
     val modelLoc = reservationNumberingResourceHolders(modelLocFile).toModelLocation()
-    regTask(ModelGenTask(basicFlatItemModelTemplate, BasicItemApplier(texLoc), modelLoc))
+    regTask(ModelGenTask(basicFlatItemModelTemplate, SimpleItemApplier(texLoc), modelLoc))
 
     // 注入先モデルにモデルを登録
     val injectModelLocFile = locationFileByModel(ResourceLocation("item/$injectItemModelName"))
@@ -384,6 +397,7 @@ fun basicFlatItemModelTask(injectItemModelName: String, customModelNum: Int, tex
     customModelInjection(injectModelHolder.resource, customModelNum, modelLoc)
     injectModelHolder.dirty = true
 }
+
 
 /**
  * タスク登録
@@ -515,6 +529,14 @@ fun templateModelFile(fileName: String): File {
 fun resItemTexFile(fileName: String): File {
     val texItemsFile = File(resourcesFolder, "items")
     return File(texItemsFile, fileName)
+}
+
+/**
+ * リソースフォルダ内のGUIテクスチャファイルを取得
+ */
+fun resGuiTexFile(fileName: String): File {
+    val texGuiFile = File(resourcesFolder, "gui")
+    return File(texGuiFile, fileName)
 }
 
 /**
@@ -893,7 +915,7 @@ data class CustomModelItemEntry(val model: ResourceLocation, val customModelNumb
 /**
  * 基本的なアイテムモデルのテンプレート適用クラス
  */
-class BasicItemApplier(private val textureLocation: ResourceLocation) : TemplateApplier {
+class SimpleItemApplier(private val textureLocation: ResourceLocation) : TemplateApplier {
     override fun apply(templateJson: JsonObject) {
         val texJo = templateJson.getAsJsonObject("textures")
         texJo.addProperty("layer0", this.textureLocation.toString())
