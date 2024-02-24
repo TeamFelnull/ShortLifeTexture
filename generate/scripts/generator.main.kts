@@ -328,6 +328,7 @@ fun initTasks() {
 
     // 例
     basicFlatItemModelTask("slime_ball", "test", resItemTexFile("test_1.png"))
+    basicFlatItemModelTask("slime_ball", "test2", resItemTexFile("test_1.png"))
 
 
     // basicFlatItemModelTask("slime_ball", 1, resItemTexFile("test.png"))
