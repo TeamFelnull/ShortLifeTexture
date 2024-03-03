@@ -15,6 +15,7 @@
 
 import com.google.common.base.Stopwatch
 import com.google.common.base.Suppliers
+import com.google.common.collect.Comparators
 import com.google.gson.Gson
 import com.google.gson.JsonArray
 import com.google.gson.JsonObject
@@ -41,6 +42,7 @@ import java.nio.file.Path
 import java.nio.file.Paths
 import java.time.Duration
 import java.time.temporal.ChronoUnit
+import java.util.Comparator
 import java.util.HashMap
 import java.util.LinkedList
 import java.util.concurrent.ConcurrentHashMap
@@ -49,7 +51,6 @@ import java.util.function.Function
 import java.util.zip.ZipInputStream
 import javax.imageio.ImageIO
 import kotlin.coroutines.EmptyCoroutineContext
-import kotlin.streams.toList // <- 消したらActions本番環境で動かなくなる
 
 /*
 それぞれのディレクトリの名称
@@ -156,12 +157,12 @@ val packAssetsDir = File(packFolder, "assets")
 /**
  * 基本的なアイテムモデルのテンプレート
  */
-val basicFlatItemModelTemplate = JsonTemplate<SimpleItemApplier>(templateModelFile("basic_flat_item.json"))
+val basicFlatItemModelTemplate = JsonTemplate<SimpleLayer0ItemApplier>(templateModelFile("basic_flat_item.json"))
 
 /**
  * 剣やピッケルなど道具のような持ち方をするアイテムモデルのテンプレート
  */
-val handHeldItemModelTemplate = JsonTemplate<SimpleItemApplier>(templateModelFile("handheld_item.json"))
+val handHeldItemModelTemplate = JsonTemplate<SimpleLayer0ItemApplier>(templateModelFile("handheld_item.json"))
 
 /* ------------------------------------------------------------------------------------------------------------ */
 
@@ -227,7 +228,7 @@ runBlocking {
 }
 
 val preProcTime = stopWatch.elapsed(TimeUnit.MILLISECONDS)
-println("事前処理完了\t経過時間: ${preProcTime}ms")
+println("事前処理完了\t\t経過時間: ${preProcTime}ms")
 
 /* --- タスク初期化 --- */
 
@@ -312,7 +313,7 @@ runBlocking {
 }
 
 val genResTime = stopWatch.elapsed(TimeUnit.MILLISECONDS)
-println("生成処理完了\t経過時間: ${genResTime}ms")
+println("生成処理完了\t\t経過時間: ${genResTime}ms")
 
 stopWatch.stop()
 
@@ -321,44 +322,65 @@ stopWatch.stop()
 /* --- メソッド/クラス等 ---*/
 
 /**
- * 生成タスク初期処理
+ * 生成タスク処理
  */
 fun initTasks() {
-    // /give @s minecraft:slime_ball{CustomModelData:1}
+    /* ここから下に記述してください */
 
-    // 例
     basicFlatItemModelTask("slime_ball", "test", resItemTexFile("test_1.png"))
-    basicFlatItemModelTask("slime_ball", "test2", resItemTexFile("test_1.png"))
-
-
+    handheldItemModelTask("slime_ball", "test2", resItemTexFile("test_1.png"))
     // basicFlatItemModelTask("slime_ball", 1, resItemTexFile("test.png"))
-    // basicFlatItemModelTask("slime_ball", 3, slLoc("item/test"))
-    /*basicFlatItemModelTask("slime_ball", "test", resItemTexFile("test_1.png"))
-    basicFlatItemModelTask("slime_ball", "test", resItemTexFile("test_1.png"))
-    basicFlatItemModelTask("slime_ball", "gui/background", resGuiTexFile("background.png"))*/
+    // handheldItemModelTask("slime_ball", 3, slLoc("item/test"))
+    // injectItemModel("slime_ball", 2, slLoc("item/test_model"))
 
-
-    /*  basicFlatItemModelTask("slime_ball", 10, slLoc("item/test"))
-      basicFlatItemModelTask("slime_ball", 12, slLoc("item/test"))
-
-      basicFlatItemModelTask("slime_ball", "", slLoc("item/test"))*/
+    /* ここから上に記述してください */
 }
 
 /**
- * 基本的な平面アイテムモデル (マッピング経由でのみ仕様を想定するモデルを生成)
+ * 道具持ちアイテムモデル (マッピング経由でのみ使用を想定するモデルを生成)
+ */
+fun handheldItemModelTask(injectItemModelName: String, mappingId: String, textureFile: File) {
+    val texLoc = textureCopyTask(textureFile)
+    val modelLoc = handheldItemModelGenTask(slLoc("item/${FNStringUtil.removeExtension(textureFile.name)}"), texLoc)
+    regTask(ModelNumberingInjectionTask(injectItemModelName, mappingId, modelLoc))
+}
+
+/**
+ * 道具持ちアイテムモデル (指定されたファイルからコピーを行う)
+ */
+fun handheldItemModelTask(injectItemModelName: String, customModelNum: Int, textureLocation: ResourceLocation) {
+    assertExistTexture(textureLocation)
+
+    val modelLoc = handheldItemModelGenTask(textureLocation, textureLocation)
+    injectModel(ResourceLocation("item/$injectItemModelName"), customModelNum, modelLoc)
+}
+
+/**
+ * 道具持ちアイテムモデル (指定されたファイルからコピーを行う)
+ */
+fun handheldItemModelTask(injectItemModelName: String, customModelNum: Int, textureFile: File) {
+    val texLoc = textureCopyTask(textureFile)
+    val modelLoc = handheldItemModelGenTask(slLoc("item/${FNStringUtil.removeExtension(textureFile.name)}"), texLoc)
+    injectModel(ResourceLocation("item/$injectItemModelName"), customModelNum, modelLoc)
+}
+
+/**
+ * 道具持ちアイテムモデルの生成タスクを登録する、実際に登録できたモデルのロケーションを返す
+ */
+fun handheldItemModelGenTask(modelLocation: ResourceLocation, textureLocation: ResourceLocation): ResourceLocation {
+    // 道具持ちモデル生成タスクを登録
+    val modelLocFile = locationFileByModel(modelLocation)
+    val modelLoc = reservationNumberingResourceHolders(modelLocFile).toModelLocation()
+    regTask(ModelGenTask(handHeldItemModelTemplate, SimpleLayer0ItemApplier(textureLocation), modelLoc))
+    return modelLoc
+}
+
+/**
+ * 基本的な平面アイテムモデル (マッピング経由でのみ使用を想定するモデルを生成)
  */
 fun basicFlatItemModelTask(injectItemModelName: String, mappingId: String, textureFile: File) {
-    // テクスチャコピータスクを追加
-    val texLocFile = locationFileByTexture(slLoc("item/${FNStringUtil.removeExtension(textureFile.name)}"))
-    val texLoc = reservationNumberingResourceHolders(texLocFile).toTextureLocation()
-    regTask(TextureCopyTask(textureFile, texLoc))
-
-    // モデル生成タスクを登録
-    val modelLocFile = locationFileByModel(slLoc("item/${FNStringUtil.removeExtension(textureFile.name)}"))
-    val modelLoc = reservationNumberingResourceHolders(modelLocFile).toModelLocation()
-    regTask(ModelGenTask(basicFlatItemModelTemplate, SimpleItemApplier(texLoc), modelLoc))
-
-    // モデル注入タスクを登録
+    val texLoc = textureCopyTask(textureFile)
+    val modelLoc = basicFlatItemModelGenTask(slLoc("item/${FNStringUtil.removeExtension(textureFile.name)}"), texLoc)
     regTask(ModelNumberingInjectionTask(injectItemModelName, mappingId, modelLoc))
 }
 
@@ -366,46 +388,77 @@ fun basicFlatItemModelTask(injectItemModelName: String, mappingId: String, textu
  * 基本的な平面アイテムモデル (指定されたテクスチャリソースロケーションのモデルを生成)
  */
 fun basicFlatItemModelTask(injectItemModelName: String, customModelNum: Int, textureLocation: ResourceLocation) {
-    // モデル生成タスクを登録
-    val modelLocFile = locationFileByModel(textureLocation)
-    val modelLoc = reservationNumberingResourceHolders(modelLocFile).toModelLocation()
-    regTask(ModelGenTask(basicFlatItemModelTemplate, SimpleItemApplier(textureLocation), modelLoc))
+    assertExistTexture(textureLocation)
 
-    // 注入先モデルにモデルを登録
-    val injectModelLocFile = locationFileByModel(ResourceLocation("item/$injectItemModelName"))
-    val injectModelHolder = resourceHolderLoadIfAbsent(injectModelLocFile, true) as JsonResourceHolder
-    customModelInjection(injectModelHolder.resource, customModelNum, modelLoc)
-    injectModelHolder.dirty = true
+    val modelLoc = basicFlatItemModelGenTask(textureLocation, textureLocation)
+    injectModel(ResourceLocation("item/$injectItemModelName"), customModelNum, modelLoc)
 }
 
 /**
  * 基本的な平面アイテムモデル (指定されたファイルからコピーを行う)
  */
 fun basicFlatItemModelTask(injectItemModelName: String, customModelNum: Int, textureFile: File) {
+    val texLoc = textureCopyTask(textureFile)
+    val modelLoc = basicFlatItemModelGenTask(slLoc("item/${FNStringUtil.removeExtension(textureFile.name)}"), texLoc)
+    injectModel(ResourceLocation("item/$injectItemModelName"), customModelNum, modelLoc)
+}
 
+/**
+ * 指定されたテクスチャファイルをリソースへコピーを行い、コピー後のテクスチャロケーションを取得する
+ */
+fun textureCopyTask(textureFile: File): ResourceLocation {
     // テクスチャコピータスクを追加
     val texLocFile = locationFileByTexture(slLoc("item/${FNStringUtil.removeExtension(textureFile.name)}"))
     val texLoc = reservationNumberingResourceHolders(texLocFile).toTextureLocation()
     regTask(TextureCopyTask(textureFile, texLoc))
-
-    // モデル生成タスクを登録
-    val modelLocFile = locationFileByModel(slLoc("item/${FNStringUtil.removeExtension(textureFile.name)}"))
-    val modelLoc = reservationNumberingResourceHolders(modelLocFile).toModelLocation()
-    regTask(ModelGenTask(basicFlatItemModelTemplate, SimpleItemApplier(texLoc), modelLoc))
-
-    // 注入先モデルにモデルを登録
-    val injectModelLocFile = locationFileByModel(ResourceLocation("item/$injectItemModelName"))
-    val injectModelHolder = resourceHolderLoadIfAbsent(injectModelLocFile, true) as JsonResourceHolder
-    customModelInjection(injectModelHolder.resource, customModelNum, modelLoc)
-    injectModelHolder.dirty = true
+    return texLoc
 }
 
+/**
+ * 基本的な平面アイテムモデルの生成タスクを登録する、実際に登録できたモデルのロケーションを返す
+ */
+fun basicFlatItemModelGenTask(modelLocation: ResourceLocation, textureLocation: ResourceLocation): ResourceLocation {
+    // 平面モデル生成タスクを登録
+    val modelLocFile = locationFileByModel(modelLocation)
+    val modelLoc = reservationNumberingResourceHolders(modelLocFile).toModelLocation()
+    regTask(ModelGenTask(basicFlatItemModelTemplate, SimpleLayer0ItemApplier(textureLocation), modelLoc))
+    return modelLoc
+}
+
+/**
+ * 対象のアイテムモデルにカスタムモデルを登録する
+ */
+fun injectItemModel(injectItemModelName: String, customModelNum: Int, injectionModel: ResourceLocation) {
+    injectModel(ResourceLocation("item/$injectItemModelName"), customModelNum, injectionModel)
+}
+
+/**
+ * 対象のモデルにカスタムモデルを登録する
+ */
+fun injectModel(targetModel: ResourceLocation, customModelNum: Int, injectionModel: ResourceLocation) {
+    // 注入先モデルにモデルを登録
+    val injectModelLocFile = locationFileByModel(targetModel)
+    val injectModelHolder = resourceHolderLoadIfAbsent(injectModelLocFile, true) as JsonResourceHolder
+    customModelInjection(injectModelHolder.resource, customModelNum, injectionModel)
+    injectModelHolder.dirty = true
+}
 
 /**
  * タスク登録
  */
 fun regTask(task: GenerateTask) {
     tasks += task
+}
+
+
+/**
+ * 指定されたテクスチャロケーションにテクスチャが存在するか確認
+ */
+fun assertExistTexture(textureLocation: ResourceLocation) {
+    val texLocFile = locationFileByTexture(textureLocation)
+    if (!texLocFile.packFile().exists() && !texLocFile.mcResFile().exists()) {
+        throw RuntimeException("テクスチャが存在しません {$textureLocation}")
+    }
 }
 
 /**
@@ -637,6 +690,14 @@ fun customModelInjection(modelJson: JsonObject, customModelNum: Int, injectModel
     customModelJo.addProperty("model", injectModelLocation.toString())
 
     overridesJa.add(customModelJo)
+
+    // モデル番号順にソート
+    val overridesJaList = overridesJa.deepCopy().sortedBy {
+        it.asJsonObject.getAsJsonObject("predicate")
+            .getAsJsonPrimitive("custom_model_data").asInt
+    }
+    overridesJa.removeAll { true }
+    overridesJaList.forEach { overridesJa.add(it) }
 }
 
 /**
@@ -917,7 +978,7 @@ data class CustomModelItemEntry(val model: ResourceLocation, val customModelNumb
 /**
  * 基本的なアイテムモデルのテンプレート適用クラス
  */
-class SimpleItemApplier(private val textureLocation: ResourceLocation) : TemplateApplier {
+class SimpleLayer0ItemApplier(private val textureLocation: ResourceLocation) : TemplateApplier {
     override fun apply(templateJson: JsonObject) {
         val texJo = templateJson.getAsJsonObject("textures")
         texJo.addProperty("layer0", this.textureLocation.toString())
