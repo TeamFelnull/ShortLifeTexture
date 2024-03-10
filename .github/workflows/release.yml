@@ -20,13 +20,21 @@ jobs:
           sed -e "s/\${tag}/${{ github.ref_name }}/g" pack.mcmeta > pack.mcmeta_rep
           mv pack.mcmeta_rep pack.mcmeta
 
+      - name: Run Generate Script # 生成スクリプトを実行
+        run: |
+          cd ./generate/scripts
+          chmod +x ./generator.main.kts
+          ./generator.main.kts 
+
       - name: Generate ZIP
         run: |
-          cd ./pack
+          cd ./out/TexturePack
           zip TexturePack -r ./*
-      - name: mv ZIP
+
+      - name: mv Out Files
         run: |
-          mkdir upload && mv pack/TexturePack.zip upload/
+          mkdir upload && mv out/TexturePack/TexturePack.zip upload/
+          mv out/pack_map.json upload/
 
       - name: Upload Artifact #アーティファクトをアップロード
         uses: actions/upload-artifact@v3
