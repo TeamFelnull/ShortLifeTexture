@@ -2,8 +2,8 @@
 	"credit": "Made with Blockbench",
 	"parent": "item/handheld",
 	"textures": {
-		"particle": "item/Hecate2_2d",
-		"layer0": "item/Hecate2_2d"
+		"particle": "item/hecate2_2d",
+		"layer0": "item/hecate2_2d"
 	},
 	"display": {
 		"thirdperson_righthand": {
