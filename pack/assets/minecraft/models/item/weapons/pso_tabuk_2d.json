@@ -2,8 +2,8 @@
 	"credit": "Made with Blockbench",
 	"parent": "item/handheld",
 	"textures": {
-		"particle": "item/pso_taduk_2d",
-		"layer0": "item/pso_taduk_2d"
+		"particle": "item/pso_tabuk_2d",
+		"layer0": "item/pso_tabuk_2d"
 	},
 	"display": {
 		"thirdperson_righthand": {
