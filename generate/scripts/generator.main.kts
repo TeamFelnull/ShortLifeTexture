@@ -328,7 +328,7 @@ stopWatch.stop()
 fun initTasks() {
     /* ここから下に記述してください */
 
-    basicFlatItemModelTask("slime_ball", "test", resItemTexFile("test_1.png"))
+    basicFlatItemModelTask("slime_ball", "test", resItemTexFile("test.png"))
     handheldItemModelTask("slime_ball", "test2", resItemTexFile("test_1.png"))
     // basicFlatItemModelTask("slime_ball", 1, resItemTexFile("test.png"))
     // handheldItemModelTask("slime_ball", 3, slLoc("item/test"))
